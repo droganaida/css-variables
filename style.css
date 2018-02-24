@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+}
+html, body {
+    height: 100%;
+}
+
+/* ---------------- Common styles ------------------ */
+:root {
+    --main-bg-color: #e9e9e9;
+    --main-accent-color: #465362;
+    --text-color: #ffffff;
+    --item-bg-color: #ffffff;
+}
+body.dark {
+    --main-bg-color: #465362;
+    --main-accent-color: #4e919b;
+    --text-clor: #242d36;
+    --item-bg-color: #3f5a6c;
+}
+body.red {
+    --main-bg-color: #881E42;
+    --main-accent-color: #F45B69;
+    --text-clor: #ffffff;
+    --item-bg-color: #b34254;
+}
+body {
+    font: 1em/1.5 Arial, Sans-serif;
+    margin: 0;
+    background: var(--main-bg-color);
+    display: flex;
+    flex-direction: column;
+}
+header, footer, main, div {
+    box-sizing: border-box;
+}
+header, footer {
+    background: var(--main-accent-color);
+    padding: 1.5em;
+    color: var(--text-color);
+}
+footer {
+    text-align: center;
+}
+header a, footer a {
+    color: var(--text-color);
+    opacity: .5;
+    transition: .3s;
+}
+header a:hover, footer a:hover, header li.active a {
+    opacity: 1;
+    transition: .3s;
+}
+header nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+header nav ul li {
+    margin: 0 1em 0 0;
+    line-height: 1.2;
+    padding: .5em;
+}
+main {
+    flex-grow: 1;
+}
+img, iframe {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+.wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 1.5em auto;
+}
+.item {
+    background-color: var(--item-bg-color);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.18);
+    padding: 1.5em;
+    margin: .5em .5em;
+}
+.wrapper .item > img {
+    margin: 0 auto;
+}
+
+/* ---------------- Masonry styles ------------------ */
+:root {
+    --column-count: 4;
+}
+/* Masonry container column-count */
+.wrapper.col .masonry {
+    column-count: var(--column-count);
+    column-gap: 1em;
+    padding: 0 .5em;
+}
+/* Masonry bricks column-count */
+.wrapper.col .item {
+    display: inline-block;
+    margin: 0 0 1em;
+    width: 100%;
+}
+
+/* ---------------- Moving cube styles ------------------ */
+:root {
+    --translation: 0;
+    --side: 10vmin;
+    --delta: 3000ms
+}
+.colorful {
+    position: fixed;
+    z-index: 9;
+    transform:
+            translateX(calc(var(--translation) * 1vw))
+            translateY(calc(var(--translation) * 1vh));
+    filter: hue-rotate(calc(var(--translation) * 4.5deg));
+    transition: transform var(--delta) ease-in-out, filter var(--delta) linear;
+    width: var(--side);
+    height: var(--side);
+    border-radius: calc(var(--side) / 4);
+    background: hsl(0, 50%, 50%);
+    will-change: transform, filter;
+}
+.go {
+    --translation: 50;
+}
+
+/* ---------------- Mobile styles ------------------ */
+@media (max-width: 900px) {
+    :root {
+        --column-count: 3;
+    }
+}
+@media (max-width: 700px) {
+    :root {
+        --column-count: 2;
+    }
+}
+@media (max-width: 450px) {
+    :root {
+        --column-count: 1;
+    }
+}

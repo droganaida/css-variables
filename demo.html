@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>#Blondiecode: Пользовательские CSS-свойства</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li>
+                <a href="index.html">Чистый CSS</a>
+            </li>
+            <li class="active">
+                <a href="demo.html">Демо CSS+JS</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="wrapper js">
+    <div class="colorful"></div>
+</main>
+<footer><a href="https://www.youtube.com/channel/UCSsg9NLCse2XQCIRgfmJu3Q" target="_blank">#BlondieCode © 2018</a></footer>
+<script>
+
+var colorful = document.querySelector('.colorful');
+var step = 1;
+var maxSide = 30;
+
+colorful.addEventListener('transitionend', function(e) {
+
+    if (e.propertyName === 'transform') {
+
+        document.documentElement.classList.toggle('go');
+
+        var style = window.getComputedStyle(colorful);
+        var currentSide = style.getPropertyValue('--side');
+
+        currentSide = parseInt(currentSide.split('vmin')[0]);
+        if (currentSide < maxSide) {
+            colorful.style.setProperty('--side', (currentSide + step) + 'vmin');
+        }
+    }
+});
+
+setTimeout(function() {
+   document.documentElement.classList.add('go');
+}, 10);
+
+</script>
+</body>
+</html>
